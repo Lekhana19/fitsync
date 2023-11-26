@@ -23,7 +23,7 @@ const AnalyticsAnimation = () => {
 
   return (
     <div style={containerStyle}>
-      <Lottie options={animationOptions} height={'60%'} width={'60%'} />
+      <Lottie options={animationOptions} height={'50%'} width={'50%'} />
     </div>
   );
 };

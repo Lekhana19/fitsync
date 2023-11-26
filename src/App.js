@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import Lottie from 'react-lottie';
 import animationData from './mainpageui.json'; // Update with your animation path
@@ -8,7 +8,8 @@ import FitnessAnimation from './FitnessAnimation';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import AnalyticsAnimation from './AnalyticsAnimation';
-// import { useMediaQuery } from 'react-responsive';
+// import Contact from './Contact'; // Import the Contact component
+import { useMediaQuery } from 'react-responsive';
 
 
 const Home = () => (
@@ -25,10 +26,10 @@ const Signup = () => (
   </div>
 );
 
-const About = () => (
+const Products = () => (
   <div className="center">
-    <h2>About Us</h2>
-    <p>This is a simple Fitsync app.</p>
+    <h2>Our Products</h2>
+    {/* Add your product information here */}
   </div>
 );
 
@@ -76,20 +77,8 @@ const defaultOptions = {
 // ... (previous code)
 
 function App() {
-  //const [isMobileNavVisible, setIsMobileNavVisible] = useState(false);
-  // useEffect(() => {
-  //   const handleLinkClick = () => {
-  //     setIsMobileNavVisible(false);
-  //   };
-
-  //   document.addEventListener('click', handleLinkClick);
-
-  //   return () => {
-  //     document.removeEventListener('click', handleLinkClick);
-  //   };
-  // }, []);
-
- // const isSmallScreen = useMediaQuery({ maxWidth: 767 });
+  const [isMobileNavVisible, setIsMobileNavVisible] = useState(false);
+  const isSmallScreen = useMediaQuery({ maxWidth: 767 });
 
   useEffect(() => {
     AOS.init({
@@ -101,28 +90,61 @@ function App() {
     <Router>
       <div className="App">
         <nav className="navbar">
-          
-          <ul style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <div className="right-links">
-              <li style={{ marginRight: '30px' }}>
-                <Link to="/signup">Signup</Link>
-              </li>
-              <li style={{ marginRight: '30px' }}>
-                <Link to="/about">About</Link>
-              </li>
-              <li>
-                <Link to="/contact">Contact</Link>
-              </li>
+          {isSmallScreen ? (
+            // Render hamburger menu for small screens
+            <div className="mobile-menu">
+              <button onClick={() => setIsMobileNavVisible(!isMobileNavVisible)}>
+                ☰
+              </button>
+              {isMobileNavVisible && (
+                <ul className="mobile-nav">
+                  <li>
+                    <Link to="/" onClick={() => setIsMobileNavVisible(false)}>
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/signup" onClick={() => setIsMobileNavVisible(false)}>
+                      Signup
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/products" onClick={() => setIsMobileNavVisible(false)}>
+                      Products
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/contact" onClick={() => setIsMobileNavVisible(false)}>
+                      Contact
+                    </Link>
+                  </li>
+                </ul>
+              )}
             </div>
-          </ul>
+          ) : (
+            // Render regular navigation for larger screens
+            <ul style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <div className="right-links">
+                <li style={{ marginRight: '30px' }}>
+                  <Link to="/signup">Signup</Link>
+                </li>
+                <li style={{ marginRight: '30px' }}>
+                  <Link to="/products">Products</Link>
+                </li>
+                <li>
+                  <Link to="/contact">Contact</Link>
+                </li>
+              </div>
+            </ul>
+          )}
         </nav>
 
         <Switch>
           <Route path="/signup" component={Signup} />
-          <Route path="/about" component={About} />
+          <Route path="/products" component={Products} />
           <Route path="/contact" component={Contact} />
           <Route path="/" component={Home} />
         </Switch>
@@ -164,4 +186,3 @@ function App() {
 }
 
 export default App;
-
