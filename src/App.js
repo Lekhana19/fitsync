@@ -1,19 +1,18 @@
-import React, { useEffect,useState } from 'react';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import Lottie from 'react-lottie';
-import animationData from './mainpageui.json'; // Update with your animation path
-import './App.css';
-import FitsyncDescription from './FitsyncDescription';
-import FitnessAnimation from './FitnessAnimation';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import AnalyticsAnimation from './AnalyticsAnimation';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import Lottie from "react-lottie";
+import animationData from "./mainpageui.json"; // Update with your animation path
+import "./App.css";
+import FitsyncDescription from "./FitsyncDescription";
+import FitnessAnimation from "./FitnessAnimation";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import AnalyticsAnimation from "./AnalyticsAnimation";
 // import Contact from './Contact'; // Import the Contact component
-import { useMediaQuery } from 'react-responsive';
-
+import { useMediaQuery } from "react-responsive";
 
 const Home = () => (
-  <div className="center" style={{ backgroundColor: 'white' }}>
+  <div className="center" style={{ backgroundColor: "white" }}>
     <FitsyncDescription />
     <Lottie options={defaultOptions} height={500} width={500} />
   </div>
@@ -34,7 +33,10 @@ const Products = () => (
 );
 
 const Contact = () => (
-  <div className="contact-info" style={{ padding: '20px', backgroundColor: '#b3e0ff' }}>
+  <div
+    className="contact-info"
+    style={{ padding: "20px", backgroundColor: "#b3e0ff" }}
+  >
     <h2>Contact Us</h2>
     <p>
       <strong>Email:</strong> contact@fitsync.com
@@ -49,29 +51,75 @@ const Contact = () => (
   </div>
 );
 
+const Footer = () => {
+  return (
+    <footer className="footer">
+      <div className="waves">
+        <div className="wave" id="wave1" />
+        <div className="wave" id="wave2" />
+        <div className="wave" id="wave3" />
+        <div className="wave" id="wave4" />
+      </div>
+      <ul className="social-icon">
+        <li className="social-icon__item">
+          <a className="social-icon__link" href="#">
+            <ion-icon name="logo-facebook" />
+          </a>
+        </li>
+        <li className="social-icon__item">
+          <a className="social-icon__link" href="#">
+            <ion-icon name="logo-twitter" />
+          </a>
+        </li>
+        <li className="social-icon__item">
+          <a className="social-icon__link" href="#">
+            <ion-icon name="logo-linkedin" />
+          </a>
+        </li>
+        <li className="social-icon__item">
+          <a className="social-icon__link" href="#">
+            <ion-icon name="logo-instagram" />
+          </a>
+        </li>
+      </ul>
+      <ul className="menu">
+        <li className="menu__item">
+          <a className="menu__link" href="#">
+            Home
+          </a>
+        </li>
+        <li className="menu__item">
+          <a className="menu__link" href="#">
+            About
+          </a>
+        </li>
+        <li className="menu__item">
+          <a className="menu__link" href="#">
+            Services
+          </a>
+        </li>
+        <li className="menu__item">
+          <a className="menu__link" href="#">
+            Team
+          </a>
+        </li>
+        <li className="menu__item">
+          <a className="menu__link" href="#">
+            Contact
+          </a>
+        </li>
+      </ul>
+      <p className="footer-copyright">©TeamFitsync | All Rights Reserved</p>
+    </footer>
+  );
+};
 
-
-const AdditionalInfo = () => (
-  <div className="contact-info" style={{ padding: '20px', backgroundColor: '#b3e0ff' }}>
-    <h2>Additional Information</h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac justo nec justo interdum lobortis vel
-      ac nisi. Sed euismod varius leo, ac volutpat felis sagittis in. Fusce vel justo non orci ultrices
-      vehicula.
-    </p>
-    <p>
-      Quisque id diam eget orci iaculis consectetur. Vivamus ultricies, risus sit amet posuere malesuada,
-      justo dui malesuada mauris, vitae consectetur elit tortor nec neque.
-    </p>
-    {/* Add more random information or details as needed */}
-  </div>
-);
 const defaultOptions = {
   loop: true,
   autoplay: true,
   animationData: animationData,
   rendererSettings: {
-    preserveAspectRatio: 'xMidYMid meet', // Adjusted preserveAspectRatio value
+    preserveAspectRatio: "xMidYMid meet", // Adjusted preserveAspectRatio value
   },
 };
 // ... (previous code)
@@ -93,7 +141,9 @@ function App() {
           {isSmallScreen ? (
             // Render hamburger menu for small screens
             <div className="mobile-menu">
-              <button onClick={() => setIsMobileNavVisible(!isMobileNavVisible)}>
+              <button
+                onClick={() => setIsMobileNavVisible(!isMobileNavVisible)}
+              >
                 ☰
               </button>
               {isMobileNavVisible && (
@@ -104,17 +154,26 @@ function App() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/signup" onClick={() => setIsMobileNavVisible(false)}>
+                    <Link
+                      to="/signup"
+                      onClick={() => setIsMobileNavVisible(false)}
+                    >
                       Signup
                     </Link>
                   </li>
                   <li>
-                    <Link to="/products" onClick={() => setIsMobileNavVisible(false)}>
+                    <Link
+                      to="/products"
+                      onClick={() => setIsMobileNavVisible(false)}
+                    >
                       Products
                     </Link>
                   </li>
                   <li>
-                    <Link to="/contact" onClick={() => setIsMobileNavVisible(false)}>
+                    <Link
+                      to="/contact"
+                      onClick={() => setIsMobileNavVisible(false)}
+                    >
                       Contact
                     </Link>
                   </li>
@@ -123,15 +182,21 @@ function App() {
             </div>
           ) : (
             // Render regular navigation for larger screens
-            <ul style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <ul
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
               <li>
                 <Link to="/">Home</Link>
               </li>
               <div className="right-links">
-                <li style={{ marginRight: '30px' }}>
+                <li style={{ marginRight: "30px" }}>
                   <Link to="/signup">Signup</Link>
                 </li>
-                <li style={{ marginRight: '30px' }}>
+                <li style={{ marginRight: "30px" }}>
                   <Link to="/products">Products</Link>
                 </li>
                 <li>
@@ -153,7 +218,9 @@ function App() {
         <div className="additional-section" data-aos="fade-up">
           {/* Content for the additional section */}
           <h2>Additional Section</h2>
-          <p>This is additional content that appears with a fade-up animation.</p>
+          <p>
+            This is additional content that appears with a fade-up animation.
+          </p>
         </div>
 
         {/* Fitness Animation section */}
@@ -165,20 +232,17 @@ function App() {
         <div className="another-section" data-aos="fade-left">
           {/* Content for another section */}
           <h2>Analytics and CRM</h2>
-          <p>This app is also about the analytics and also controlling the commiunity.</p>
+          <p>
+            This app is also about the analytics and also controlling the
+            commiunity.
+          </p>
         </div>
         {/* New Animation section */}
         <div className="new-animation-section" data-aos="fade-right">
           <AnalyticsAnimation />
-          </div>
-        {/* Contact section */}
-        <div className="contact-section" data-aos="fade-up">
-          <Contact />
         </div>
-
-        {/* Additional information section */}
-        <div className="additional-info-section" data-aos="fade-up">
-          <AdditionalInfo />
+        <div data-aos="fade-up">
+          <Footer />
         </div>
       </div>
     </Router>
